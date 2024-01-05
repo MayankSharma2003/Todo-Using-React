@@ -1,0 +1,14 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.left{
+    width: 50%;
+    background-color: antiquewhite;
+}
+
+.right{
+    width:50%;
+    background-color: rgb(255, 193, 116);
+}
