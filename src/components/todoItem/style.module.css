@@ -5,7 +5,9 @@
 
 li{
     margin-left: 5px;
-    display: flex;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1px;
 }
 
 hr{

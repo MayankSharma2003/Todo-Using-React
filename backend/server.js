@@ -65,15 +65,14 @@ app.put("/updateCb", function (request, response) {
             response.json({ error: error });
         } else {
             const filteredTodos = todos.filter(function (todoItem) {
-                if (Number(todoItem.id) !== Number(todo.id) && todoItem.userName === todo.userName)
-                    return Number(todoItem.id) !== Number(todo.id);
-                else if (todoItem.userName === todo.userName) {
+                if (Number(todoItem.id) == Number(todo.id))
+                    {
                     if (Number(todoItem.completed) == 0)
                         todoItem.completed = 1;
                     else
                         todoItem.completed = 0;
-                    return todoItem;
                 }
+                return true;
             });
 
 
@@ -95,6 +94,37 @@ app.put("/updateCb", function (request, response) {
 
 });
 
+app.delete("/deleteTodo", function (request, response) {
+    const todo = request.body;
+
+    getTodos(null, true, function (error, todos) {
+        if (error) {
+            response.status(500);
+            response.json({ error: error });
+        } else {
+            const filteredTodos = todos.filter(function (todoItem) {
+                    return Number(todoItem.id) !== Number(todo.id);
+            });
+
+
+            fs.writeFile(
+                "./store.txt",
+                JSON.stringify(filteredTodos),
+                function (error) {
+                    if (error) {
+                        response.status(500);
+                        response.json({ error: error });
+                    } else {
+                        response.status(200);
+                        response.send();
+                    }
+                }
+            );
+        }
+    });
+});
+
+
 app.get("*", function (request, response) {
     response.sendFile(__dirname + "/public/404.html");
 });
@@ -109,7 +139,7 @@ function getTodos(username, all, callback) {
             callback(error);
         } else {
             if (data.length === 0) {
-                data = "[]";
+                data = "[]";    
             }
 
             try {

@@ -46,3 +46,21 @@ export async function updateCb(data) {
             })
     })
 }
+
+export async function deleteTodo(data) {
+    return new Promise((resolve, reject) => {
+        fetch('http://localhost:8000/deleteTodo', {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id: data }),
+        })
+            .then(function (response) {
+                if (response.status == 200) {
+                    resolve(response);
+                }
+            })
+            .catch(function (error) {
+                reject(error);
+            })
+    })
+}

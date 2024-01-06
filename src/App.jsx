@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import TodoItem from './components/todoItem'
 import TakeItem from './components/form/input'
 import style from './mainstyle.module.css'
-import { saveTodo,getTodos,updateCb } from '../apicall/todo'
+import { saveTodo,getTodos,updateCb, deleteTodo} from '../apicall/todo'
 
-const userName = prompt("(REQUIRED)Enter your name : ");
+let userName = prompt("(REQUIRED)Enter your name : ");
 
 function App() {
   const [data, setData] = useState([]);
@@ -56,8 +56,8 @@ function App() {
   }
 
   function onChangeInput(ev){
-    if (ev.target.value == "" && ev.key == "Enter"){
-        alert("Empty todo can not enter")
+    if (ev.target.value.trim() == "" && ev.key == "Enter"){
+        alert("Empty todo can not enter !!")
       }
       else if(ev.key=="Enter"){
         console.log(ev.target.value);
@@ -78,19 +78,19 @@ function App() {
       }
   }
   return (
+    <>
+    <h1 className={style.h1}>Todo App</h1>
     <div className={style.container}>
       <div className={style.left}>
         {/* {console.log(data[0])} */}
-        {data.map(val => <TodoItem data={val} cb_update={cb_update} todoRemove={todoRemove} />)}
+        {data.map(val => <TodoItem data={val} cb_update={cb_update} todoRemove={todoRemove} key={val.id}/>)}
       </div>
       <div className={style.right}>
         <ul>{<TakeItem inputValue={inputValue} onChangeInput={onChangeInput} />}</ul>
-        
       </div>
-    </div>        
+    </div>
+    </>        
   )
 }
-
-
 
 export default App

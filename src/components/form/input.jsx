@@ -11,8 +11,8 @@ export default function TakeItem({inputValue,onChangeInput}) {
 
     return (
         <>
-            <h2>Enter the todo : </h2>
-            <input type="text" inputValue={inputValue} onKeyDown={m} id="inputbox" placeholder='Enter the todo.....'/>
+            <h2 className={style.h2}>Enter the todo : </h2>
+            <input className={style.inputbox} type="text" inputValue={inputValue} onKeyDown={m} id="inputbox" placeholder='Enter the todo.....' />
         </>
     )
 }

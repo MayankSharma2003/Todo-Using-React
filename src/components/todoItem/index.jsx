@@ -3,7 +3,7 @@ import style from './style.module.css'
 export default function TodoItem({ data, cb_update , todoRemove}) {
 
     function markDone(e) {
-        console.log(data);
+        // console.log(data);
         cb_update(data.id)
     }
 

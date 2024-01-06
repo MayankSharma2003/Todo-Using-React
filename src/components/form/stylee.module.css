@@ -1,4 +1,11 @@
-#inputbox{
-    margin-top: 100px;
+.inputbox{
+    width: 60%;
+    text-align: center;
+    margin-left: 100px;
+}
+
+.h2{
+    font-size: 35px;
+    text-align: center;
 }
 
